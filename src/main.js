@@ -12,6 +12,7 @@ Vue.use(Antd);
 
 Vue.prototype.$axios = axios
 axios.defaults.baseURL = 'http://127.0.0.1:82/'
+//axios.defaults.baseURL = 'http://115.29.179.42:80/'
 // axios.defaults.headers.common['token']=sessionStorage.getItem("token")
 
 const router = new Router({

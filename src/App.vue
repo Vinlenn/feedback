@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="height: 100%;width: 100%">
     <a-layout id="components-layout-demo-top-side" v-if="$route.meta.keepAlive">
       <a-layout-header class="header" >
         <a-menu
@@ -20,16 +20,13 @@
               <a-sub-menu key="user">
                 <span slot="title"><a-icon type="solution" />用户管理</span>
                 <a-menu-item key="/user/edit">
-                  修改
+                  修改信息
                 </a-menu-item>
                 <a-menu-item key="2">
-                  option2
+                  添加用户
                 </a-menu-item>
                 <a-menu-item key="3">
-                  option3
-                </a-menu-item>
-                <a-menu-item key="4">
-                  option4
+                  用户列表
                 </a-menu-item>
               </a-sub-menu>
               <a-sub-menu key="feedback">
@@ -49,7 +46,7 @@
               </a-sub-menu>
               <a-sub-menu key="system">
                 <span slot="title"><a-icon type="bars" />系统管理</span>
-                <a-menu-item key="/user/login">
+                <a-menu-item key="/user/logout">
                   退出
                 </a-menu-item>
                 <a-menu-item key="6">
@@ -60,6 +57,12 @@
                 </a-menu-item>
                 <a-menu-item key="8">
                   option8
+                </a-menu-item>
+              </a-sub-menu>
+              <a-sub-menu key="zkh">
+                <span slot="title"><a-icon type="bars" />zkh</span>
+                <a-menu-item key="/zkh/category/list">
+                  类别列表
                 </a-menu-item>
               </a-sub-menu>
             </a-menu>
@@ -77,16 +80,24 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
   export default {
     data() {
       return {
 
       };
     },
+    created(){
+      axios.defaults.headers.common['token'] = sessionStorage.getItem("token");
+    },
     methods: {
       change:function (e) {
-        console.log(e.key);
-        this.$router.push(e.key);
+        if(e.key==='/user/logout'){
+          sessionStorage.removeItem("token");
+          this.$router.push("/login")
+        }else{
+          this.$router.push(e.key);
+        }
       }
     },
   };
