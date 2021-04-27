@@ -64,6 +64,12 @@
                 <a-menu-item key="/zkh/category/list">
                   类别列表
                 </a-menu-item>
+                <a-menu-item key="/zkh/type/list">
+                  品种列表
+                </a-menu-item>
+                <a-menu-item key="/zkh/article/list">
+                  文章列表
+                </a-menu-item>
               </a-sub-menu>
             </a-menu>
           </a-layout-sider>
