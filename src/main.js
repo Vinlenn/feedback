@@ -10,9 +10,15 @@ import 'ant-design-vue/dist/antd.css';
 Vue.use(Router);
 Vue.use(Antd);
 
+const originalPush = Router.prototype.push
+
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.prototype.$axios = axios
-//axios.defaults.baseURL = 'http://127.0.0.1:80/'
-axios.defaults.baseURL = 'http://115.29.179.42:80/'
+axios.defaults.baseURL = 'http://127.0.0.1:80/'
+//axios.defaults.baseURL = 'http://115.29.179.42:80/'
 // axios.defaults.headers.common['token']=sessionStorage.getItem("token")
 
 const router = new Router({
