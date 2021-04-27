@@ -92,7 +92,7 @@
             },
             handleTableChange: function (pagination) {
                 this.pagination = pagination;
-                axios.post("/type/list", {
+                axios.post("/article/list", {
                     pageNumber: this.pagination.current,
                     pageSize: this.pagination.pageSize,
                     id: this.$route.query.id

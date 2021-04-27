@@ -24,9 +24,9 @@
         <p>
             爬虫关键字：{{anotherName}}
         </p>
-        <p>
-            源地址： <a>{{url}}</a>
-        </p>
+
+
+        <h6>源地址：{{url}}</h6>
 
         <p>
             <a-button type="primary" v-if="reader==='否'" v-on:click="onReader">已阅读</a-button>
