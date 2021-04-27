@@ -113,7 +113,37 @@
                     }
                 })
             }
-        }
+        },
+        watch: {
+            $route() {
+                axios.post("/article/list", {
+                    pageNumber: this.pagination.current,
+                    pageSize: this.pagination.pageSize,
+                    id: this.$route.query.id
+                }).then((res) => {
+                    if (res.data.code === 200) {
+                        const parse = JSON.parse(res.data.data);
+                        console.log(parse);
+                        this.data = parse.list;
+                        this.pagination.total = parse.count;
+                        console.log(this.pagination.total)
+                    } else {
+                        this.$notification.open({
+                            message: '服务器提醒',
+                            description:
+                            res.data.msg,
+                            onClick: () => {
+
+                            },
+                        });
+                    }
+
+                })
+
+
+            }
+
+        },
 
     };
 </script>

@@ -64,7 +64,7 @@
                         this.$router.push("/")
                     }else{
                         this.$notification.open({
-                            message: '反馈平台',
+                            message: '来自服务器的提醒',
                             description:
                                 res.data.msg,
                             onClick: () => {
