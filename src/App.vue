@@ -73,7 +73,7 @@
         </a-layout>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
-        Ant Design ©2018 Created by Ant UED
+         Created by @Vinlen
       </a-layout-footer>
     </a-layout>
     <router-view v-if="!$route.meta.keepAlive"></router-view>

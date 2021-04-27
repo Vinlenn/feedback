@@ -73,15 +73,6 @@
                         });
                     }
 
-                }).catch(()=>{
-                    this.$notification.open({
-                        message: '反馈平台',
-                        description:
-                            '服务器开了点小差，请稍后再试',
-                        onClick: () => {
-
-                        },
-                    });
                 })
             }
 

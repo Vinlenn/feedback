@@ -1,6 +1,6 @@
 <template>
     <a-table :columns="columns" :data-source="data" rowKey="id" :pagination="pagination" @change="handleTableChange" >
-        <a slot="name" slot-scope="text,record" v-on:click="toType(record.id)">{{text}}</a>
+        <a slot="name" slot-scope="text,record" v-on:click="toArticle(record.id)">{{text}}</a>
         <span slot="customTitle"><a-icon type="smile-o" /> 名称</span>
         <span slot="action" slot-scope="text, record" >
             <a v-on:click="onDelete(record.id)">删除</a>
@@ -53,19 +53,32 @@
                 pageSize:this.pagination.pageSize,
                 id:this.$route.query.id
             }).then((res)=>{
-                const parse = JSON.parse(res.data.data);
-                console.log(parse);
-                this.data=parse.list;
-                this.pagination.total=parse.count;
-                console.log(this.pagination.total)
+                if(res.data.code===200){
+                    const parse = JSON.parse(res.data.data);
+                    console.log(parse);
+                    this.data=parse.list;
+                    this.pagination.total=parse.count;
+                    console.log(this.pagination.total)
+                }else{
+                    this.$notification.open({
+                        message: '反馈平台',
+                        description:
+                        res.data.msg,
+                        onClick: () => {
+
+                        },
+                    });
+                }
+
+
             })
         },
         methods:{
             onDelete:function (id) {
-                console.log(id);
+            console.log(id);
             },
-            toType:function(id){
-                console.log(id);
+            toArticle:function(id){
+                this.$router.push({path: '/zkh/article/list', query: {id: id}})
             },
             handleTableChange:function (pagination) {
                 this.pagination=pagination;
@@ -74,9 +87,21 @@
                     pageSize:this.pagination.pageSize,
                     id:this.$route.query.id
                 }).then((res)=>{
-                    const parse = JSON.parse(res.data.data);
-                    this.data=parse.list;
-                    this.pagination.total=parse.count;
+                    if(res.data.code===200){
+                        const parse = JSON.parse(res.data.data);
+                        this.data=parse.list;
+                        this.pagination.total=parse.count;
+                    }else{
+                        this.$notification.open({
+                            message: '反馈平台',
+                            description:
+                            res.data.msg,
+                            onClick: () => {
+
+                            },
+                        });
+                    }
+
                 })
             }
         }
