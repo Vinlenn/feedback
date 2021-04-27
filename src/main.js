@@ -17,8 +17,8 @@ Router.prototype.push = function push(location) {
 }
 
 Vue.prototype.$axios = axios
-axios.defaults.baseURL = 'http://127.0.0.1:80/'
-//axios.defaults.baseURL = 'http://115.29.179.42:80/'
+//axios.defaults.baseURL = 'http://127.0.0.1:81/'
+axios.defaults.baseURL = 'http://115.29.179.42:81/'
 // axios.defaults.headers.common['token']=sessionStorage.getItem("token")
 
 const router = new Router({
